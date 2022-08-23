@@ -2,6 +2,11 @@ table {
   width: 100%;
 }
 
+.loading-toolbar{
+  display: flex;
+  justify-content: center;
+}
+
 .loading-spinner{
   padding: 25px;
   background: rgba(0,0,0,0.15);

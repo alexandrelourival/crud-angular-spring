@@ -20,8 +20,8 @@ export class CoursesComponent implements OnInit {
   constructor(private coursesService: CoursesService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     this.courses$ = this.coursesService.list()
       .pipe(
-        catchError(_error => {
-          this.onError('Erro ao carregar Cursos');
+        catchError(error => {
+          this.onError('Erro ao carregar Cursos', error);
           return of([])
         })
       );
@@ -30,13 +30,14 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onError(errorMsg: string) {
+  onError(errorMsg: string, error: any) {
+    console.log(error);
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     })
   }
 
   onAdd() {
-    this.router.navigate(['new'], {relativeTo: this.route});
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 }

@@ -1,12 +1,12 @@
 package com.exemplo.loiane;
 
-import org.springframework.boot.CommandLineRunner;
+//import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Bean;
 
-import com.exemplo.loiane.model.Course;
-import com.exemplo.loiane.repository.CourseRepository;
+//import com.exemplo.loiane.model.Course;
+//import com.exemplo.loiane.repository.CourseRepository;
 
 @SpringBootApplication
 public class CrudSpringApplication {
@@ -15,7 +15,7 @@ public class CrudSpringApplication {
 		SpringApplication.run(CrudSpringApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	CommandLineRunner initDatabase(CourseRepository courseRepository){
 		return args -> {
 			// Utilizando o application.properties para fazer o mesmo
@@ -28,5 +28,5 @@ public class CrudSpringApplication {
 
 			courseRepository.save(c);
 		};
-	}
+	}*/
 }

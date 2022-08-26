@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 
-import { Course } from '../../model/course';
 import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
+import { Course } from '../../model/course';
 import { CoursesService } from '../../services/courses.service';
 
 @Component({
@@ -34,20 +34,13 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onError(errorMsg: string, error: any) {
-    console.log(error);
-    this.dialog.open(ErrorDialogComponent, {
-      data: errorMsg
-    })
-  }
-
   onAdd() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
   onDelete(record: Course) {
     console.log(record);
-    this.coursesService.delete(record).subscribe(result => this.onSucess(), error => console.log(error));
+    this.coursesService.delete(record).subscribe(_result => this.onSucess(), error => console.log(error));
   }
 
   onEdit(record: Course) {
@@ -62,6 +55,13 @@ export class CoursesComponent implements OnInit {
           return of([])
         })
       );
+  }
+
+  onError(errorMsg: string, error: any) {
+    console.log(error);
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg
+    })
   }
 
 }

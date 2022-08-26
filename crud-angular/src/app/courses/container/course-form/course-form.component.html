@@ -6,7 +6,8 @@
     <mat-form-field class="full-width">
       <mat-label>Curso</mat-label>
       <input matInput placeholder="Nome do Curso" formControlName="name" required>
-      <mat-error *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">O nome do curso é obrigatório.</mat-error>
+      <mat-error *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">O nome do curso é
+        obrigatório.</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
@@ -17,7 +18,8 @@
         <mat-option value="front-end">Front-End</mat-option>
         <mat-option value="back-end">Back-End</mat-option>
       </mat-select>
-      <mat-error *ngIf="form.get('category')?.hasError('required') && form.get('category')?.touched">A categoria do curso é obrigatória.</mat-error>
+      <mat-error *ngIf="form.get('category')?.hasError('required') && form.get('category')?.touched">A categoria do
+        curso é obrigatória.</mat-error>
     </mat-form-field>
   </form>
 

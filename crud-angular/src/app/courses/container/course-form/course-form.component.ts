@@ -1,13 +1,13 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
-import { Course } from '../model/course';
-import { ErrorDialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
-import { CoursesService } from './../services/courses.service';
+import { Course } from '../../model/course';
+import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
+import { CoursesService } from '../../services/courses.service';
 
 @Component({
   selector: 'app-course-form',
@@ -18,8 +18,8 @@ export class CourseFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     _id: [''],
-    name: ['', Validators.required], //new FormControl('', {nonNullable: true}),
-    category: ['', Validators.required] //new FormControl('', {nonNullable: true})
+    name: [''], //new FormControl('', {nonNullable: true}),
+    category: [''] //new FormControl('', {nonNullable: true})
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,

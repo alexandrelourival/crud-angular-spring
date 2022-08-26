@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 import { Course } from '../model/course';
 import { ErrorDialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
@@ -16,24 +17,34 @@ import { CoursesService } from './../services/courses.service';
 export class CourseFormComponent implements OnInit {
 
   form = this.formBuilder.group({
-    name: [''], //new FormControl('', {nonNullable: true}),
-    category: [''] //new FormControl('', {nonNullable: true})
+    _id: [''],
+    name: ['', Validators.required], //new FormControl('', {nonNullable: true}),
+    category: ['', Validators.required] //new FormControl('', {nonNullable: true})
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: CoursesService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
-    private location: Location) {
+    private location: Location,
+    private route: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
+    const course: Course = this.route.snapshot.data['CourseResolver'];
+    this.form.setValue({
+      _id: course._id,
+      name: course.name,
+      category: course.category
+    });
   }
 
   onSubmit() {
     this.service.save(this.form.value)
-      .subscribe(result => this.onSucess("Curso criado com sucesso!", result), error => this.onError("Erro ao salvar Curso", error));
+      .subscribe(
+        result => this.onSucess("Curso salvo com sucesso!", result),
+        error => this.onError("Erro ao salvar Curso", error));
   }
 
   onCancel() {
@@ -43,7 +54,7 @@ export class CourseFormComponent implements OnInit {
   private onSucess(sucessMsg: string, result: Course) {
     console.log(result);
     this.snackBar.open(sucessMsg, '', { duration: 2000 });
-    this.location.back();
+    this.onCancel();
   }
 
   private onError(errorMsg: string, error: any) {

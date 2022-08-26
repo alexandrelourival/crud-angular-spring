@@ -25,4 +25,12 @@ export class CoursesService {
   save(record: Partial<Course>) {
     return this.httpClient.post<Course>(this.API, record).pipe(first());
   }
+
+  loadById(id: String) {
+    return this.httpClient.get<Course>(`${this.API}/${id}`);
+  }
+
+  delete(record: Course){
+    return this.httpClient.delete<Course>(this.API, {body: record}).pipe(first());
+  }
 }
